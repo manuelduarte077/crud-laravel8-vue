@@ -1943,12 +1943,64 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      empleado: {
+        name: '',
+        last_name: '',
+        phone: 1,
+        dni: 1,
+        direction: ''
+      },
       modificar: true,
       modal: 0,
-      tituloModal: '',
+      tituloModal: "",
       empleados: []
     };
   },
@@ -1963,7 +2015,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('/empleados');
+                return axios.get("/empleados");
 
               case 2:
                 res = _context.sent;
@@ -1987,7 +2039,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios["delete"]('/empleados/' + id);
+                return axios["delete"]("/empleados/" + id);
 
               case 2:
                 res = _context2.sent;
@@ -2002,14 +2054,67 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
+    guardar: function guardar(id) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var res, _res;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (!_this3.modificar) {
+                  _context3.next = 6;
+                  break;
+                }
+
+                _context3.next = 3;
+                return axios.put('/empleados/' + _this3.id, _this3.empleado);
+
+              case 3:
+                res = _context3.sent;
+                _context3.next = 9;
+                break;
+
+              case 6:
+                _context3.next = 8;
+                return axios.post('/empleados', _this3.empleado);
+
+              case 8:
+                _res = _context3.sent;
+
+              case 9:
+                _this3.closeModal();
+
+                _this3.listar();
+
+              case 11:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
     openModal: function openModal() {
-      var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       this.modal = 1;
 
       if (this.modificar) {
         this.tituloModal = "Modificar Empleado";
+        this.id = data.id, this.empleado.name = data.name;
+        this.empleado.last_name = data.last_name;
+        this.empleado.phone = data.phone;
+        this.empleado.dni = data.dni;
+        this.empleado.direction = data.direction;
       } else {
-        this.tituloModal = "Crear Empleado";
+        this.id = 0, this.tituloModal = "Crear Empleado";
+        this.empleado.name = '';
+        this.empleado.last_name = '';
+        this.empleado.phone = '';
+        this.empleado.dni = '';
+        this.empleado.direction = '';
       }
     },
     closeModal: function closeModal() {
@@ -6562,7 +6667,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.mostrar {\n    display: list-item;\n    opacity: 1;\n    background: rgb(51, 36, 36);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.mostrar {\r\n    display: list-item;\r\n    opacity: 1;\r\n    background: rgb(51, 36, 36);\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38708,7 +38813,7 @@ var render = function() {
     _c(
       "button",
       {
-        staticClass: "btn btn-primary",
+        staticClass: "btn btn-primary mb-3",
         attrs: { type: "button" },
         on: {
           click: function($event) {
@@ -38739,11 +38844,171 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("×")]
+              [_vm._v("\n                        ×\n                    ")]
             )
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("form", { attrs: { action: "" } }, [
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "form-label", attrs: { for: "name" } },
+                  [_vm._v("Name")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.empleado.name,
+                      expression: "empleado.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", id: "name", placeholder: "Nombre" },
+                  domProps: { value: _vm.empleado.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.empleado, "name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "form-label", attrs: { for: "last_name" } },
+                  [_vm._v("LastName")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.empleado.last_name,
+                      expression: "empleado.last_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    id: "last_name",
+                    placeholder: "Apellido"
+                  },
+                  domProps: { value: _vm.empleado.last_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.empleado, "last_name", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "form-label", attrs: { for: "phone" } },
+                  [_vm._v("Phone")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.empleado.phone,
+                      expression: "empleado.phone"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    id: "phone",
+                    placeholder: "Celular"
+                  },
+                  domProps: { value: _vm.empleado.phone },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.empleado, "phone", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "form-label", attrs: { for: "dni" } },
+                  [_vm._v("DNI")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.empleado.dni,
+                      expression: "empleado.dni"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number", id: "dni", placeholder: "Cedula" },
+                  domProps: { value: _vm.empleado.dni },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.empleado, "dni", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mb-3" }, [
+                _c(
+                  "label",
+                  { staticClass: "form-label", attrs: { for: "direction" } },
+                  [_vm._v("Dirección")]
+                ),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.empleado.direction,
+                      expression: "empleado.direction"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "direction", rows: "3" },
+                  domProps: { value: _vm.empleado.direction },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.empleado, "direction", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
             _c(
@@ -38757,16 +39022,29 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Cancelar")]
+              [
+                _vm._v(
+                  "\n                        Cancelar\n                    "
+                )
+              ]
             ),
             _vm._v(" "),
             _c(
               "button",
               {
                 staticClass: "btn btn-success",
-                attrs: { type: "button", "data-dismiss": "modal" }
+                attrs: { type: "button", "data-dismiss": "modal" },
+                on: {
+                  click: function($event) {
+                    return _vm.guardar()
+                  }
+                }
               },
-              [_vm._v("Guardar")]
+              [
+                _vm._v(
+                  "\n                        Guardar\n                    "
+                )
+              ]
             )
           ])
         ])
@@ -38774,7 +39052,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("table", { staticClass: "table table-striped" }, [
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "tbody",
@@ -38800,11 +39078,15 @@ var render = function() {
                   on: {
                     click: function($event) {
                       _vm.modificar = true
-                      _vm.openModal(empl.id)
+                      _vm.openModal(empl)
                     }
                   }
                 },
-                [_vm._v("Editar")]
+                [
+                  _vm._v(
+                    "\n                        Editar\n                    "
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -38817,7 +39099,11 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Eliminar")]
+                [
+                  _vm._v(
+                    "\n                        Eliminar\n                    "
+                  )
+                ]
               )
             ])
           ])
@@ -38828,14 +39114,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("form", { attrs: { action: "" } })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -38857,7 +39135,7 @@ var staticRenderFns = [
         _c(
           "th",
           { staticClass: "text-center", attrs: { scope: "col", colspan: "2" } },
-          [_vm._v("Acciones")]
+          [_vm._v("\n                    Acciones\n                ")]
         )
       ])
     ])
