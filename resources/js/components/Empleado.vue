@@ -76,8 +76,8 @@
             </div>
         </div>
 
-        <table class="table table-striped">
-            <thead class="thead-dark">
+        <table class="table table-striped table-bordered" id="empleado" style="width:100%">
+            <thead class="bg-primary text-white">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
@@ -123,6 +123,9 @@
 </template>
 
 <script>
+
+
+
 export default {
     data() {
         return {
@@ -196,13 +199,26 @@ export default {
 
         closeModal() {
             this.modal = 0;
+        },   
+        
+        mytable() {
+        $(document).ready(function() {
+            $('#empleado').DataTable({
+                "lengthMenu": [[5,10, -1], [5,10,50, "ALL"]]
+            });
+        } );
         }
+
     },
 
     created() {
         this.listar();
+        this.mytable();
     }
+
+    
 };
+
 </script>
 
 <style>

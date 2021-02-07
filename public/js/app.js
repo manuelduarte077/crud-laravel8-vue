@@ -2119,10 +2119,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     closeModal: function closeModal() {
       this.modal = 0;
+    },
+    mytable: function mytable() {
+      $(document).ready(function () {
+        $('#empleado').DataTable({
+          "lengthMenu": [[5, 10, -1], [5, 10, 50, "ALL"]]
+        });
+      });
     }
   },
   created: function created() {
     this.listar();
+    this.mytable();
   }
 });
 
@@ -39051,66 +39059,74 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-striped" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.empleados, function(empl) {
-          return _c("tr", { key: empl.id }, [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(empl.id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(empl.name))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(empl.last_name))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(empl.phone))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(empl.dni))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(empl.direction))]),
-            _vm._v(" "),
-            _c("td", { staticClass: "text-center" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-warning",
-                  on: {
-                    click: function($event) {
-                      _vm.modificar = true
-                      _vm.openModal(empl)
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                        Editar\n                    "
-                  )
-                ]
-              ),
+    _c(
+      "table",
+      {
+        staticClass: "table table-striped table-bordered",
+        staticStyle: { width: "100%" },
+        attrs: { id: "empleado" }
+      },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.empleados, function(empl) {
+            return _c("tr", { key: empl.id }, [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(empl.id))]),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger",
-                  on: {
-                    click: function($event) {
-                      return _vm.elinimar(empl.id)
+              _c("td", [_vm._v(_vm._s(empl.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(empl.last_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(empl.phone))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(empl.dni))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(empl.direction))]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-center" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-warning",
+                    on: {
+                      click: function($event) {
+                        _vm.modificar = true
+                        _vm.openModal(empl)
+                      }
                     }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                        Eliminar\n                    "
-                  )
-                ]
-              )
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Editar\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.elinimar(empl.id)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Eliminar\n                    "
+                    )
+                  ]
+                )
+              ])
             ])
-          ])
-        }),
-        0
-      )
-    ])
+          }),
+          0
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -39118,7 +39134,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark" }, [
+    return _c("thead", { staticClass: "bg-primary text-white" }, [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
